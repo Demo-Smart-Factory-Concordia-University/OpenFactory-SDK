@@ -61,17 +61,21 @@ services:
       retries: 10
 
   ksqldb-cli:
-    # to run ksql: docker exec -it ksqldb-cli ksql http://ksqldb-server:8088
+    # To run interactively:
+    # docker exec -it ksqldb-cli ksql http://ksqldb-server:8088
     image: confluentinc/cp-ksqldb-cli:7.7.0
     container_name: ksqldb-cli
     depends_on:
       broker:
-        condition: service_healthy
+         condition: service_healthy
       ksqldb-server:
-        condition: service_healthy
+         condition: service_healthy
     environment:
-      KSQL_URL: http://ksqldb-server:8088
-    entrypoint: /bin/sh
+      - KSQL_START_SCRIPTS=mtcdevices.sql:ofacmds.sql
+      - KSQL_URL=http://ksqldb-server:8088
+    volumes:
+      - "./scripts:/home/appuser/scripts"
+    entrypoint: bash -c "source ./scripts/start_ksql.sh; tail -F anything"
     tty: true
     networks:
       - factory-net
