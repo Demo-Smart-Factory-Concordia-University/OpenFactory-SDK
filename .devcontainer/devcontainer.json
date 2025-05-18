@@ -1,6 +1,9 @@
 {
   "name": "OpenFactory-SDK Dev Container",
   "image": "mcr.microsoft.com/devcontainers/python:3.10",
+  "features": {
+    "docker-in-docker": "latest"
+  },
   "postCreateCommand": "pip install -e .",
   "customizations": {
     "vscode": {
