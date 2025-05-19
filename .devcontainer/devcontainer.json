@@ -4,9 +4,11 @@
   "features": {
     "docker-in-docker": {
       "version": "latest"
+    },
+    "./features/openfactory": {
+      "INSTALLINFRA": "true"
     }
   },
-  "postCreateCommand": "pip install -e .",
   "customizations": {
     "vscode": {
       "settings": {
