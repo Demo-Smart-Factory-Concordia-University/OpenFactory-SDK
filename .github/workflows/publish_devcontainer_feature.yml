@@ -17,10 +17,11 @@ jobs:
         run: npm install -g @devcontainers/cli
 
       - name: Publish feature to GHCR
+        working-directory: .devcontainer/features
         run: |
           devcontainer features publish \
             --namespace demo-smart-factory-concordia-university \
             --registry ghcr.io \
-            ./.devcontainer/features/openfactory
+            ./openfactory
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
