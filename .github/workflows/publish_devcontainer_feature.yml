@@ -1,27 +1,22 @@
-name: Publish OpenFactory SDK Feature
-
-on: [workflow_dispatch]
+name: "Publish dev container features"
+on:
+  workflow_dispatch:
 
 jobs:
-  publish:
+  deploy:
+    if: ${{ github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      packages: write
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
+      - name: "Publish Features"
+        uses: devcontainers/action@v1
         with:
-          node-version: 18
-
-      - name: Install Dev Container CLI
-        run: npm install -g @devcontainers/cli
-
-      - name: Publish feature to GHCR
-        working-directory: .devcontainer/features
-        run: |
-          devcontainer features publish \
-            --namespace demo-smart-factory-concordia-university \
-            --registry ghcr.io \
-            ./openfactory-sdk
+          publish-features: "true"
+          base-path-to-features: ".devcontainer/features"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
