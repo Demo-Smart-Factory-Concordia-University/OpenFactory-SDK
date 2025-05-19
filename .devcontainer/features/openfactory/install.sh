@@ -7,11 +7,9 @@ echo "🔧 Installing OpenFactory SDK feature..."
 WORKSPACE_PATH="/workspaces/$(ls /workspaces | head -n 1)"
 echo "📁 Workspace path detected as: $WORKSPACE_PATH"
 
-if [ "${INSTALLINFRA}" = "true" ]; then
-    echo "📁 Copying infrastructure files..."
-    mkdir -p "$WORKSPACE_PATH/openfactory-infra"
-    cp -r "$(dirname "$0")/assets/sdk-infra/." "$WORKSPACE_PATH/openfactory-infra/"
-fi
+echo "📁 Copying infrastructure files..."
+mkdir -p "$WORKSPACE_PATH/openfactory-infra"
+cp -r "$(dirname "$0")/assets/sdk-infra/." "$WORKSPACE_PATH/openfactory-infra/"
 
 # Install Python SDK if setup.py exists
 if [ -f "$WORKSPACE_PATH/setup.py" ]; then

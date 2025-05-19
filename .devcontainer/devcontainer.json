@@ -5,9 +5,7 @@
     "docker-in-docker": {
       "version": "latest"
     },
-    "./features/openfactory": {
-      "INSTALLINFRA": "true"
-    }
+    "./features/openfactory": {}
   },
   "customizations": {
     "vscode": {
