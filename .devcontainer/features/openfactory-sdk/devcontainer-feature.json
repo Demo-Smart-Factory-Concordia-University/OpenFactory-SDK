@@ -2,12 +2,5 @@
   "id": "openfactory-sdk",
   "version": "0.1.1",
   "name": "OpenFactory SDK Feature",
-  "description": "Installs the OpenFactory SDK and its local infrastructure.",
-  "options": {
-    "installInfra": {
-      "type": "boolean",
-      "default": true,
-      "description": "Copy Docker Compose and infra files"
-    }
-  }
+  "description": "Installs the OpenFactory SDK and its local infrastructure."
 }
