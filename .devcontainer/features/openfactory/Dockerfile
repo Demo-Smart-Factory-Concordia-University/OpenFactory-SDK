@@ -7,8 +7,5 @@ COPY assets/sdk-infra /usr/local/share/sdk-infra
 # Make sure the install script is executable
 RUN chmod +x /usr/local/bin/install.sh
 
-# Run the install script
-RUN INSTALLINFRA=true /usr/local/bin/install.sh
-
 # Set entrypoint
 CMD ["/bin/bash"]
