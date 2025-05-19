@@ -22,6 +22,6 @@ jobs:
           devcontainer features publish \
             --namespace demo-smart-factory-concordia-university \
             --registry ghcr.io \
-            ./openfactory
+            ./openfactory-sdk
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
