@@ -22,6 +22,6 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .devcontainer/features/openfactory
-          file: ./Dockerfile
+          file: .devcontainer/features/openfactory/Dockerfile
           push: true
           tags: ghcr.io/demo-smart-factory-concordia-university/devcontainer-feature-openfactory-sdk:latest
