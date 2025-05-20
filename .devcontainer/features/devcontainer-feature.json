@@ -1,6 +1,6 @@
 {
   "id": "openfactory-sdk",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "name": "OpenFactory SDK Feature",
   "description": "Installs the OpenFactory SDK and its local infrastructure.",
   "postCreateCommand": "cp -r /usr/local/share/openfactory-sdk/. .",
