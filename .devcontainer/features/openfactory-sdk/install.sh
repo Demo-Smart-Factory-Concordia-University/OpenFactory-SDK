@@ -3,13 +3,9 @@ set -e
 
 echo "🔧 Installing OpenFactory SDK feature..."
 
-# Dynamically detect workspace directory
-WORKSPACE_PATH="/workspaces/$(ls /workspaces | head -n 1)"
-echo "📁 Workspace path detected as: $WORKSPACE_PATH"
-
 echo "📁 Copying infrastructure files..."
-mkdir -p "$WORKSPACE_PATH/openfactory-infra"
-cp -r "$(dirname "$0")/assets/sdk-infra/." "$WORKSPACE_PATH/openfactory-infra/"
+mkdir -p "/usr/local/share/openfactory-sdk/openfactory-infra"
+cp -r "$(dirname "$0")/assets/sdk-infra/." "/usr/local/share/openfactory-sdk/openfactory-infra/"
 
 # Install Python SDK if setup.py exists
 if [ -f "$WORKSPACE_PATH/setup.py" ]; then
