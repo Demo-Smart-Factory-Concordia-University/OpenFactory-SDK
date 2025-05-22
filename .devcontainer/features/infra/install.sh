@@ -7,6 +7,13 @@ echo "📁 Copying infrastructure files..."
 mkdir -p "/usr/local/share/openfactory-sdk/openfactory-infra"
 cp -r "$(dirname "$0")/assets/sdk-infra/." "/usr/local/share/openfactory-sdk/openfactory-infra/"
 
+# Use OPENFACTORY_VERSION from the feature option
+echo "🐍 Installing OpenFactory @${OPENFACTORY_VERSION} from GitHub..."
+pip install --no-cache-dir "git+https://github.com/Demo-Smart-Factory-Concordia-University/OpenFactory.git@${OPENFACTORY_VERSION}"
+
+echo "🐍 Installing OpenFactory-SDK from GitHub..."
+pip install --no-cache-dir git+https://github.com/Demo-Smart-Factory-Concordia-University/OpenFactory-SDK.git
+
 echo "🛠️ Setting environment variables..."
 {
   echo 'export KAFKA_BROKER="broker:9092"'

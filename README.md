@@ -15,15 +15,29 @@ The SDK includes a Dev Container **Feature** that automatically sets up the Open
 Add the following to your `.devcontainer/devcontainer.json`:
 
 ```json
-"features": {
-  "docker-in-docker": {
-    "version": "latest"
-  },
-  "ghcr.io/demo-smart-factory-concordia-university/openfactory-sdk/infra:latest": {}
+{
+  "features": {
+    "docker-in-docker": {
+      "version": "latest"
+    },
+    "ghcr.io/demo-smart-factory-concordia-university/openfactory-sdk/infra:latest": {
+      "openfactory-version": "main"
+    }
+  }
 }
-````
+```
+
+| Options Id           | Description                                                | Type   | Default Value |
+|----------------------|------------------------------------------------------------|--------|----------------|
+| openfactory-version  | Git ref (branch, tag, or commit) of OpenFactory to install | string | main           |
+
+
 
 This will:
+
+* Install OpenFactory with the desired version
+
+* Install the OpenFactory SDK
 
 * Copy the OpenFactory infrastructure files into your dev container (under `/usr/local/share/openfactory-sdk/openfactory-infra`)
 * Define these environment variables:
