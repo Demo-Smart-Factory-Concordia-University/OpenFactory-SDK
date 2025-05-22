@@ -7,4 +7,19 @@ echo "📁 Copying infrastructure files..."
 mkdir -p "/usr/local/share/openfactory-sdk/openfactory-infra"
 cp -r "$(dirname "$0")/assets/sdk-infra/." "/usr/local/share/openfactory-sdk/openfactory-infra/"
 
+echo "🛠️ Setting environment variables..."
+{
+  echo 'export KAFKA_BROKER="broker:9092"'
+  echo 'export KSQLDB_URL="http://ksqldb-server:8088"'
+} >> /etc/profile.d/00-openfactory-sdk.sh
+chmod +x /etc/profile.d/00-openfactory-sdk.sh
+
+echo "🪄 Adding helpful aliases to /etc/bash.bashrc..."
+{
+  echo '# OpenFactory-SDK aliases'
+  echo 'alias ksql="docker exec -it ksqldb-cli ksql http://ksqldb-server:8088"'
+  echo 'alias spinup="docker compose -f /usr/local/share/openfactory-sdk/openfactory-infra/docker-compose.yml up -d"'
+  echo 'alias teardown="docker compose -f /usr/local/share/openfactory-sdk/openfactory-infra/docker-compose.yml down"'
+} >> /etc/bash.bashrc
+
 echo "✅ OpenFactory SDK setup complete."

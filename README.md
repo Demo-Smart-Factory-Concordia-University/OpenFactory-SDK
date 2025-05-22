@@ -6,11 +6,13 @@ The **OpenFactory-SDK** provides tools to develop and test OpenFactory applicati
 
 ---
 
-## Deploy OpenFactory-SDK in a Dev Container
+## 🐳 Deploy OpenFactory-SDK in a Dev Container
 
-The SDK includes a DevContainer **Feature** that automatically sets up the OpenFactory infrastructure inside your development environment.
+The SDK includes a Dev Container **Feature** that automatically sets up the OpenFactory infrastructure inside your development environment.
 
-To use it, add the following to your `devcontainer.json`:
+### ✨ Usage
+
+Add the following to your `.devcontainer/devcontainer.json`:
 
 ```json
 "features": {
@@ -19,4 +21,22 @@ To use it, add the following to your `devcontainer.json`:
   },
   "ghcr.io/demo-smart-factory-concordia-university/openfactory-sdk/infra:latest": {}
 }
-```
+````
+
+This will:
+
+* Copy the OpenFactory infrastructure files into your dev container (under `/usr/local/share/openfactory-sdk/openfactory-infra`)
+* Define these environment variables:
+  ```
+  KAFKA_BROKER=broker:9092
+  KSQLDB_URL=http://ksqldb-server:8088
+  ```
+
+* Add these shell aliases:
+  ```
+  ksql      – launch the ksqlDB CLI
+  spinup    – start infrastructure with Docker Compose
+  teardown  – tear down the infrastructure
+  ```
+
+The environment variables and aliases are available in every Bash terminal inside your dev container.
