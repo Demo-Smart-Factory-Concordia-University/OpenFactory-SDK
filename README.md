@@ -2,7 +2,7 @@
 
 **OpenFactory Software Development Kit**
 
-The **OpenFactory-SDK** provides tools to develop and test OpenFactory applications in a simplified development environment. Instead of requiring a full OpenFactory and Kafka cluster setup, this SDK uses lightweight Docker containers to simulate the necessary infrastructure.
+The **OpenFactory-SDK** provides tools to develop and test [OpenFactory](https://github.com/Demo-Smart-Factory-Concordia-University/OpenFactory) applications in a simplified development environment. Instead of requiring a full OpenFactory and Kafka cluster setup, this SDK uses lightweight Docker containers to simulate the necessary infrastructure.
 
 ---
 
