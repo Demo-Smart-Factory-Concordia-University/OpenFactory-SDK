@@ -15,21 +15,18 @@ or (during development, after cloning the repository locally)
 
 from openfactory_sdk.sdk_cli import cli
 from openfactory.models.user_notifications import user_notify
-from openfactory.docker.docker_access_layer import dal
 from openfactory.ofa.ksqldb import ksql
 from openfactory.kafka.ksql import KSQLDBClientException
 import openfactory.config as Config
 
 
 def init_environment() -> bool:
-    """ Setup OpenFactory environment (notifications, Docker, ksqlDB). """
+    """ Setup OpenFactory environment (notifications, ksqlDB). """
     user_notify.setup(
         success_msg=lambda msg: print(f"{Config.OFA_SUCCSESS}{msg}{Config.OFA_END}"),
         fail_msg=lambda msg: print(f"{Config.OFA_FAIL}{msg}{Config.OFA_END}"),
         info_msg=print
     )
-
-    dal.connect()
 
     try:
         ksql.connect(Config.KSQLDB_URL)
@@ -41,7 +38,7 @@ def init_environment() -> bool:
 
 
 def ofa_sdk_cli():
-    """ """
+    """ Main entry point of openfactory-sdk cli. """
     if not init_environment():
         exit(1)
     cli()
