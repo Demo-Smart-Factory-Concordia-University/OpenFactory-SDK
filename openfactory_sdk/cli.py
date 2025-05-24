@@ -1,37 +1,51 @@
-# cli.py
+"""
+OpenFactory-SDK Command Line Interface.
 
-import click
+Usage: openfactory-sdk [OPTIONS] COMMAND [ARGS]...
+Help: openfactory-sdk --help
 
-@click.group()
-def cli():
-    """ OpenFactory SDK CLI - Develop and test OpenFactory apps locally. """
-    pass
+Becomes available after installing OpenFactory-SDK like
 
-@cli.command()
-def init():
-    """ Initialize the local OpenFactory SDK environment. """
-    click.echo("Initializing OpenFactory SDK environment...")
+> pip install git+https://github.com/Demo-Smart-Factory-Concordia-University/OpenFactory-SDK.git
 
-@cli.command()
-def up():
-    """ Start the local OpenFactory infrastructure (Kafka, ksqlDB, etc). """
-    click.echo("Starting OpenFactory virtual infrastructure...")
+or (during development, after cloning the repository locally)
 
-@cli.command()
-def down():
-    """ Tear down the local OpenFactory infrastructure. """
-    click.echo("Stopping OpenFactory virtual infrastructure...")
+> pip install -e .
+"""
 
-@cli.command()
-@click.argument("app_config", type=click.Path(exists=True))
-def deploy(app_config):
-    """Deploy an OpenFactory app from a config file."""
-    click.echo(f"Deploying application defined in {app_config}...")
+from openfactory_sdk.sdk_cli import cli
+from openfactory.models.user_notifications import user_notify
+from openfactory.docker.docker_access_layer import dal
+from openfactory.ofa.ksqldb import ksql
+from openfactory.kafka.ksql import KSQLDBClientException
+import openfactory.config as Config
 
-@cli.command()
-def status():
-    """Show the status of the local SDK cluster."""
-    click.echo("Showing infrastructure and app status...")
+
+def init_environment() -> bool:
+    """ Setup OpenFactory environment (notifications, Docker, ksqlDB). """
+    user_notify.setup(
+        success_msg=lambda msg: print(f"{Config.OFA_SUCCSESS}{msg}{Config.OFA_END}"),
+        fail_msg=lambda msg: print(f"{Config.OFA_FAIL}{msg}{Config.OFA_END}"),
+        info_msg=print
+    )
+
+    dal.connect()
+
+    try:
+        ksql.connect(Config.KSQLDB_URL)
+    except KSQLDBClientException:
+        user_notify.fail('Failed to connect to ksqlDB server')
+        return False
+
+    return True
+
+
+def ofa_sdk_cli():
+    """ """
+    if not init_environment():
+        exit(1)
+    cli()
+
 
 if __name__ == "__main__":
-    cli()
+    ofa_sdk_cli()
