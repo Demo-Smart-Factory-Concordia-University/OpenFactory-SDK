@@ -31,7 +31,7 @@ def init_environment() -> bool:
     try:
         ksql.connect(Config.KSQLDB_URL)
     except KSQLDBClientException:
-        user_notify.fail('Failed to connect to ksqlDB server')
+        user_notify.fail('Failed to connect to ksqlDB server. Make sure to spin up the OpenFactory infrastructure.')
         return False
 
     return True
