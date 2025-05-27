@@ -53,4 +53,11 @@ This will:
   teardown  – tear down the infrastructure
   ```
 
-The environment variables and aliases are available in every Bash terminal inside your dev container.
+  The environment variables and aliases are available in every Bash terminal inside your dev container.
+
+* Add the `openfactory-sdk` command
+
+  This command allows to deploy OpenFactory assets (devices, applications) on the development OpenFactory infrastructure. Help about available commands can be obtained with
+  ```
+  openfactory-sdk --help
+  ```
