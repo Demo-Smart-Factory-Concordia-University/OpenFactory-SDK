@@ -61,3 +61,7 @@ This will:
   ```
   openfactory-sdk --help
   ```
+
+## Use cases
+
+* [Test an OpenFactory adapter](doc/test_adapter.md)
