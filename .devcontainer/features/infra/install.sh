@@ -16,7 +16,7 @@ pip install --no-cache-dir git+https://github.com/Demo-Smart-Factory-Concordia-U
 
 echo "🛠️ Setting environment variables..."
 {
-  echo 'export KAFKA_BROKER="localhost:9092"'
+  echo 'export KAFKA_BROKER="localhost:9092,broker:29092"'
   echo 'export KSQLDB_URL="http://localhost:8088"'
 } >> /etc/profile.d/00-openfactory-sdk.sh
 chmod +x /etc/profile.d/00-openfactory-sdk.sh
