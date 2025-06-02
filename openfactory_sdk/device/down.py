@@ -18,7 +18,8 @@ def click_down(path: str, dry_run: bool) -> None:
         path (str): Path to the YAML config file or folder containing YAML files.
         dry_run (bool): If True, only show which YAML files would be shut down.
     """
-    ofa = OpenFactoryManager(ksqlClient=ksql.client, deployment_strategy=LocalDockerDeploymentStrategy())
+    ofa = OpenFactoryManager(ksqlClient=ksql.client,
+                             deployment_strategy=LocalDockerDeploymentStrategy())
 
     process_yaml_files(path, dry_run,
                        action_func=ofa.shut_down_devices_from_config_file,
