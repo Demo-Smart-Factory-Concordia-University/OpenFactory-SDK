@@ -15,6 +15,15 @@ def device():
     pass
 
 
+@cli.group()
+def app():
+    """ Manage OpenFactory apps. """
+    pass
+
+
 # Register commands
+app.add_command(sdk.app.click_up)
+app.add_command(sdk.app.click_down)
+
 device.add_command(sdk.device.click_up)
 device.add_command(sdk.device.click_down)
