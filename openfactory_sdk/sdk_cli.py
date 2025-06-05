@@ -33,6 +33,7 @@ app.add_command(sdk.app.click_down)
 app.add_command(sdk.app.click_ls)
 
 asset.add_command(sdk.asset.click_ls)
+asset.add_command(sdk.asset.click_inspect)
 
 device.add_command(sdk.device.click_up)
 device.add_command(sdk.device.click_down)
