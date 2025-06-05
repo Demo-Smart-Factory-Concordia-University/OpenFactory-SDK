@@ -27,3 +27,4 @@ app.add_command(sdk.app.click_down)
 
 device.add_command(sdk.device.click_up)
 device.add_command(sdk.device.click_down)
+device.add_command(sdk.device.click_ls)
