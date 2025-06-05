@@ -25,7 +25,7 @@ def click_inspect(asset_uuid: str) -> None:
     table.add_column("Type", justify="left")
     table.add_column("Tag", justify="left")
 
-    asset = Asset(asset_uuid, ksqlClient=ksql)
+    asset = Asset(asset_uuid, ksqlClient=ksql.client)
 
     samples = asset.samples()
     for key in samples:
