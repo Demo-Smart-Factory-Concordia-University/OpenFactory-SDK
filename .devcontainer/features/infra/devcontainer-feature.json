@@ -1,6 +1,6 @@
 {
   "id": "infra",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "name": "OpenFactory SDK Feature",
   "description": "Installs the OpenFactory SDK and its local infrastructure.",
   "options": {
