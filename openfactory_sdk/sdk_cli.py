@@ -24,6 +24,7 @@ def app():
 # Register commands
 app.add_command(sdk.app.click_up)
 app.add_command(sdk.app.click_down)
+app.add_command(sdk.app.click_ls)
 
 device.add_command(sdk.device.click_up)
 device.add_command(sdk.device.click_down)
