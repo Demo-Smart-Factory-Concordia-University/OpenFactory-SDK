@@ -28,16 +28,18 @@ def click_inspect(asset_uuid: str) -> None:
     asset = Asset(asset_uuid, ksqlClient=ksql.client)
 
     samples = asset.samples()
-    for key in samples:
-        table.add_row(key,
-                      samples[key],
-                      'Sample')
+    for sample in samples:
+        table.add_row(sample['ID'],
+                      sample['VALUE'],
+                      'Sample',
+                      sample['TAG'])
 
     events = asset.events()
-    for key in events:
-        table.add_row(key,
-                      events[key],
-                      'Events')
+    for event in events:
+        table.add_row(event['ID'],
+                      event['VALUE'],
+                      'Events',
+                      event['TAG'])
 
     conditions = asset.conditions()
     for cond in conditions:
