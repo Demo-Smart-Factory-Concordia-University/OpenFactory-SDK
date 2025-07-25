@@ -42,8 +42,9 @@ This will:
 * Copy the OpenFactory infrastructure files into your dev container (under `/usr/local/share/openfactory-sdk/openfactory-infra`)
 * Define these environment variables:
   ```
-  KAFKA_BROKER=broker:9092
-  KSQLDB_URL=http://ksqldb-server:8088
+  CONTAINER_IP=<DEV_CONTAINER-IP>
+  KAFKA_BROKER=$CONTAINER_IP:9092,broker:29092
+  KSQLDB_URL=http://$CONTAINER_IP:8088
   ```
 
 * Add these shell aliases:

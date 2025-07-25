@@ -14,14 +14,17 @@ pip install --no-cache-dir "git+https://github.com/Demo-Smart-Factory-Concordia-
 echo "🐍 Installing OpenFactory-SDK from GitHub..."
 pip install --no-cache-dir git+https://github.com/Demo-Smart-Factory-Concordia-University/OpenFactory-SDK.git
 
-echo "🛠️ Setting environment variables..."
-{
-  echo 'export KAFKA_BROKER="localhost:9092,broker:29092"'
-  echo 'export KSQLDB_URL="http://localhost:8088"'
-} >> /etc/profile.d/00-openfactory-sdk.sh
+echo "🛠️ Setting container IP address and environment variables..."
+cat << 'EOF' >> /etc/profile.d/00-openfactory-sdk.sh
+CONTAINER_IP=$(ip -4 addr show eth0 2>/dev/null | grep -oP '(?<=inet\s)\d+(\.\d+){3}' || hostname -i | awk '{print $1}')
+export CONTAINER_IP
+export KAFKA_BROKER="${KAFKA_BROKER:-${CONTAINER_IP}:9092,broker:29092}"
+export KSQLDB_URL="${KSQLDB_URL:-http://${CONTAINER_IP}:8088}"
+EOF
+
 chmod +x /etc/profile.d/00-openfactory-sdk.sh
 
-echo "🪄 Adding helpful aliases to /etc/bash.bashrc..."
+echo "🛠️ Adding helpful aliases to /etc/bash.bashrc..."
 {
   echo '# OpenFactory-SDK aliases'
   echo 'alias ksql="docker exec -it ksqldb-cli ksql http://ksqldb-server:8088"'
